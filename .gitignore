@@ -9,6 +9,9 @@
 .env.backup
 .env.production
 .phpunit.result.cache
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
 Homestead.json
 Homestead.yaml
 auth.json
