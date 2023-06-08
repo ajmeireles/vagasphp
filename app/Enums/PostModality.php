@@ -2,11 +2,12 @@
 
 namespace App\Enums;
 
-use App\Enums\Traits\ToArray;
+use App\Enums\Traits\{ToArray, ToTranslate};
 
 enum PostModality: int
 {
     use ToArray;
+    use ToTranslate;
 
     case Presential = 1;
     case Remote     = 2;
