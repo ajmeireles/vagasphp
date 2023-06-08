@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Enums\{PostModality, PostSpecification, PostStatus, PostType};
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\{Model, Relations\HasMany, Relations\HasManyThrough, SoftDeletes};
 
 class Post extends Model
 {
@@ -27,4 +27,21 @@ class Post extends Model
         'notification'  => 'string',
         'configuration' => 'array',
     ];
+
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function users(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            User::class,
+            Subscription::class,
+            'post_id',
+            'id',
+            'id',
+            'user_id'
+        );
+    }
 }
